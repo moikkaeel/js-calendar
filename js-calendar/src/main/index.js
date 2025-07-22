@@ -9,13 +9,19 @@ function createWindow() {
     width: 900,
     height: 670,
     show: false,
+    frame: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
+      contextIsolation: true,
+      nodeIntegration: false,
       sandbox: false
     }
   })
+
+  // Keep Electron App Window Always on Top
+  mainWindow.setAlwaysOnTop(true, "screen");
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
@@ -35,6 +41,7 @@ function createWindow() {
   }
 }
 
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -49,8 +56,21 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window)
   })
 
-  // IPC test
-  ipcMain.on('ping', () => console.log('pong'))
+  // IPC
+  ipcMain.on("close-window", ()=> {
+    console.log("close-button received");
+    const currentWindow = BrowserWindow.getFocusedWindow();
+    if(currentWindow) {
+      currentWindow.close();
+    }
+  })
+
+  ipcMain.on("minimize-window", ()=> {
+    const currentWindow = BrowserWindow.getFocusedWindow();
+    if(currentWindow) {
+      currentWindow.minimize();
+    }
+  })
 
   createWindow()
 
@@ -72,3 +92,6 @@ app.on('window-all-closed', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+console.log('Main, index.js loaded');
+console.log(join(__dirname, '../preload/index.js'));
