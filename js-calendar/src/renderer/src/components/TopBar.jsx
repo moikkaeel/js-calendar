@@ -12,7 +12,7 @@ export default function TopBar() {
 
   return (
     <div> 
-        <div className='rounded-t-xl bg-blue-400 w-screen h-5'
+        <div className='bg-blue-400 w-screen h-5'
         style={{WebkitAppRegion: "drag"}}></div>
         <div className='bg-blue-400 w-screen h-3'></div>
         <div id="control-buttons" className="absolute top-1 right-0 pe-2 text-stone-200">

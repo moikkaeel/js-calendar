@@ -2,7 +2,7 @@ import { React, useState } from 'react'
 import Task from './Task'
 import NewTaskButton from './NewTaskButton'
 
-// TODO: sort tasks by completion
+// TODO: change task title by clicking; sort tasks by completion
 
 export default function Feed() {
 
@@ -11,7 +11,9 @@ export default function Feed() {
 
     // Functions
     const addNewTask=() => {
-        const newTask = { title: `Task`, isComplete: false };
+        const newTask = { title: `New Task`, isComplete: false, 
+        isInput: false
+        };
         setTasks([...tasks, newTask]);
     }
 
@@ -21,8 +23,20 @@ export default function Feed() {
         ));
     }
 
-    const deleteTask=(indexToRemove) => {
-        setTasks(tasks.filter((_, i) => i !== indexToRemove));
+    const deleteTask=(index) => {
+        setTasks(tasks.filter((_, i) => i !== index));
+    }
+
+    const changeTaskTitle=(index, newTitle) => {
+        const selected = setTasks(tasks.map((task, i) =>
+            i === index ? { ...task, title: newTitle} : task
+        ));
+    }
+
+    const changeIsInputValue=(index) => {
+        setTasks(tasks.map((task, i) =>
+            i === index ? { ...task, isInput: !task.isInput } : task
+        ));
     }
 
   return (
@@ -35,7 +49,10 @@ export default function Feed() {
                 title={task.title} 
                 completeTask={completeTask}
                 deleteTask={deleteTask}
-                isComplete={task.isComplete}></Task>
+                isComplete={task.isComplete}
+                isInput={task.isInput}
+                changeIsInputValue={changeIsInputValue}
+                onTitleChange={(newTitle) => changeTaskTitle(i, newTitle)}></Task>
             ))}
         </div>
     </div>

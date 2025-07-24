@@ -11,6 +11,7 @@ function createWindow() {
     show: false,
     frame: false,
     resizable: false,
+    transparent: true,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
