@@ -1,7 +1,7 @@
 import {Date} from "./date.js";
 
 // Storing Date-objects
-let calendar = [];
+export default calendar = [];
 
 // Can add own dates for people needing to have 
 // to-do lists for certain dats (aka me)

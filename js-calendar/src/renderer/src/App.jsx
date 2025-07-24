@@ -1,12 +1,14 @@
 import TopBar from './components/TopBar'
+import DateView from './components/DateView'
 
 function App() {
-  const ipcHandle = () => window.electron.ipcRenderer.send('ping')
-
   return (
     <>
     <TopBar></TopBar>
-      <h1 className="text-lg">Hello World!</h1>
+    <div className='flex inline flex-col items-center m-1 bg-blue-400'>
+      <h1>Hello!</h1>
+      <DateView></DateView>
+    </div>
     </>
   )
 }
