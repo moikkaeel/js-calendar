@@ -1,4 +1,4 @@
-import {Date} from "./date.js";
+import {Date} from "../assets/date.js";
 
 // Storing Date-objects
 export default calendar = [];
