@@ -13,7 +13,7 @@ export default function DateView() {
     }
 
   return (
-    <div> 
+    <div className='bg-blue-400 w-full'> 
         <div className='flex justify-around'>
             <button id="past" onClick={getPast} className='cursor-pointer'>&#60;</button>
             <p id="date">{date}</p>

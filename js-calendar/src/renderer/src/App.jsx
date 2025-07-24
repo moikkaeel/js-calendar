@@ -1,13 +1,14 @@
 import TopBar from './components/TopBar'
 import DateView from './components/DateView'
+import Feed from './components/Feed'
 
 function App() {
   return (
     <>
     <TopBar></TopBar>
-    <div className='flex inline flex-col items-center m-1 bg-blue-400'>
-      <h1>Hello!</h1>
+    <div className='flex flex-col items-center m-1 mt-5'>
       <DateView></DateView>
+      <Feed></Feed>
     </div>
     </>
   )
