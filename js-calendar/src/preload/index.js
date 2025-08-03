@@ -1,8 +1,13 @@
 import { contextBridge } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
+import * as calendarData from '../code/calendarData.js'
 
 // Custom APIs for renderer
-const api = {}
+const api = {
+  testOut: () => {console.log("It works!")},
+  viewCalendar: () => calendarData.viewCalendar(),
+  addDate: (date) => calendarData.addDate(date)
+}
 
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise

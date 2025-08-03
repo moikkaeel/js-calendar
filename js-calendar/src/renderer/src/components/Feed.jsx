@@ -2,12 +2,15 @@ import { React, useState } from 'react'
 import Task from './Task'
 import NewTaskButton from './NewTaskButton'
 
-// TODO: change task title by clicking; sort tasks by completion
+// TODO: sort tasks by completion
+// TODO: set up the main calendar somewhere and track it
 
 export default function Feed() {
 
     // States
     const [tasks, setTasks] = useState([]);
+
+    const calendar = window.api;
 
     // Functions
     const addNewTask=() => {
@@ -15,6 +18,7 @@ export default function Feed() {
         isInput: false
         };
         setTasks([...tasks, newTask]);
+        calendar.testOut();
     }
 
     const completeTask=(index) => {
@@ -45,6 +49,7 @@ export default function Feed() {
         <div id="tasks" className='flex flex-col mt-3 w-full max-h-80 overflow-y-scroll'>
             {tasks.map((task, i) => (
                 <Task 
+                key={i}
                 index={i} 
                 title={task.title} 
                 completeTask={completeTask}
